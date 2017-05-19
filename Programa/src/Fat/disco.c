@@ -82,7 +82,7 @@ EntradaDisco* buscarEntradaDiscoLibre(Disco *lista){
   EntradaDisco *libre;
   actual = lista->inicio;
   while(actual != NULL){
-          if (strcmp(actual->metadata, "00000100") == 0) {
+          if (strcmp(actual->metadata, "00100000") == 0) {
             libre = actual;
             return libre;
           }

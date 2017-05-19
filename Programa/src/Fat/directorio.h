@@ -4,6 +4,7 @@
 //http://probacodigos.blogspot.cl/2012/09/ejemplos-c-lista-enlazada.html
 typedef struct NodoDir{
     char * nombre;
+    char * ruta;
     int primerBloque;
     int size;
     struct NodoDir *siguiente;
@@ -19,9 +20,9 @@ typedef struct ListaDir{
 /*inicializa la lista*/
 void incializacionDir(Directorio *lista);
 /*En caso de error devuelve -1 sino 0*/
-int InsercionEnListaVaciaDir(Directorio *lista, char *nombre, int primerBloque, int size);
+int InsercionEnListaVaciaDir(Directorio *lista, char *ruta, int primerBloque, int size, char *nombre);
 /*insertar en fin de la lista*/
-int InsercionFinListaDir(Directorio *lista, char *nombre, int primerBloque, int size);
+int InsercionFinListaDir(Directorio *lista, char * ruta, int primerBloque, int size, char *nombre);
  /*muestra la lista entera*/
 void visualizacionDir(Directorio *lista);
 //Una lista enlazada sin ningun elemento se llama lista vacía.

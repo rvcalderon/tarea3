@@ -13,13 +13,16 @@ void incializacionDir(Directorio *lista){
 }
 
 /*Inserción en una lista vacía */
-int InsercionEnListaVaciaDir(Directorio *lista, char *nombre, int primerBloque, int size){
+int InsercionEnListaVaciaDir(Directorio *lista, char * ruta, int primerBloque, int size, char *nombre){
     EntradaDirectorio *nuevo_elemento;
     if((nuevo_elemento = (EntradaDirectorio *)malloc(sizeof(EntradaDirectorio)))==NULL)
         return -1;
     if((nuevo_elemento->nombre = (char *)malloc(50*sizeof(char)))==NULL)
         return -1;
+    if((nuevo_elemento->ruta = (char *)malloc(50*sizeof(char)))==NULL)
+        return -1;
     strcpy(nuevo_elemento->nombre, nombre);
+    strcpy(nuevo_elemento->ruta, ruta);
 
     nuevo_elemento->primerBloque = primerBloque;
     nuevo_elemento->size = size;
@@ -32,7 +35,7 @@ int InsercionEnListaVaciaDir(Directorio *lista, char *nombre, int primerBloque, 
 }
 
 /*Insercion al final de la lista */
-int InsercionFinListaDir(Directorio *lista, char *nombre, int primerBloque, int size){
+int InsercionFinListaDir(Directorio *lista, char* ruta, int primerBloque, int size, char *nombre){
     EntradaDirectorio *nuevo_elemento;
     EntradaDirectorio *actual;
     actual = lista->fin;
@@ -40,7 +43,10 @@ int InsercionFinListaDir(Directorio *lista, char *nombre, int primerBloque, int 
         return -1;
     if((nuevo_elemento->nombre = (char *)malloc(50*sizeof(char)))==NULL)
         return -1;
+    if((nuevo_elemento->ruta = (char *)malloc(50*sizeof(char)))==NULL)
+        return -1;
     strcpy(nuevo_elemento->nombre, nombre);
+    strcpy(nuevo_elemento->ruta, ruta);
 
     nuevo_elemento->primerBloque = primerBloque;
     nuevo_elemento->size = size;
