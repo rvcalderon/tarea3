@@ -1,2 +1,2 @@
-mkdir relativa1/nombre1
-mkdir relativa2/nombre2
+mkdir directorio1/file
+

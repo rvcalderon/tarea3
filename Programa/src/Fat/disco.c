@@ -19,11 +19,9 @@ int InsercionEnListaVaciaDisco(Disco *lista, char *metadata){
         return -1;
     if((nuevo_elemento->metadata = (char *)malloc(50*sizeof(char)))==NULL)
         return -1;
-    if((nuevo_elemento->referencia = (char *)malloc(50*sizeof(char)))==NULL)
-        return -1;
     strcpy(nuevo_elemento->metadata, metadata);
 
-    nuevo_elemento->referencia = "EOF";
+    nuevo_elemento->referencia = "-1";
     nuevo_elemento->siguiente = NULL;
     lista->inicio = nuevo_elemento;
     lista->fin = nuevo_elemento;
@@ -39,8 +37,7 @@ int InsercionFinListaDisco(Disco *lista, EntradaDisco *actual, char *metadata){
         return -1;
     if((nuevo_elemento->metadata = (char *)malloc(50*sizeof(char)))==NULL)
         return -1;
-    if((nuevo_elemento->referencia = (char *)malloc(50*sizeof(char)))==NULL)
-        return -1;
+    
     strcpy(nuevo_elemento->metadata,metadata);
 
     nuevo_elemento->referencia = NULL;
@@ -58,7 +55,7 @@ void visualizacionDisco(Disco *lista){
     actual = lista->inicio;
     while(actual != NULL){
             //printf("%p - %s - %s - %d\n",actual,actual->metadata, actual->referencia, actual->indice);
-            printf("[SIMDISK] metadata:%s referencia:%s bloque:%d\n",actual->metadata, actual->referencia, actual->indice);
+            printf("[SIMDISK] metadata:%s referencia:%d bloque:%d\n",actual->metadata, actual->referencia, actual->indice);
             actual = actual->siguiente;
         }
 }
@@ -70,7 +67,7 @@ void visualizacionIndiceDisco(Disco *lista, int i){
     while(actual != NULL){
             if (actual->indice == i) {
               //printf("[SIMDISK] %p - %s - %s\n",actual,actual->metadata, actual->referencia);
-              printf("[SIMDISK] metadata:%s referencia:%s bloque:%d\n",actual->metadata, actual->referencia, actual->indice);
+              printf("[SIMDISK] metadata:%s referencia:%d bloque:%d\n",actual->metadata, actual->referencia, actual->indice);
               break;
             }
             actual = actual->siguiente;
@@ -97,3 +94,23 @@ void freeElementoListaDisco(EntradaDisco *actual) {
   free(actual->referencia);
   free(actual);
 }
+
+
+EntradaDisco * ultimobloque(int primerBloque, int cantidad_bloques, Disco *lista){
+  EntradaDisco *actual;
+  actual = lista->inicio;
+  int i = primerBloque;
+  while(actual != NULL){
+          if (actual->indice == i) {
+            if(actual->referencia == "-1"){
+              return actual;
+            }
+            else{
+              i = actual->referencia;
+              actual = lista->inicio;
+            }
+          }
+          actual = actual->siguiente;
+      }
+}
+

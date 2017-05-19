@@ -4,7 +4,7 @@
 //http://probacodigos.blogspot.cl/2012/09/ejemplos-c-lista-enlazada.html
 typedef struct NodoDisco{
     char * metadata;
-    char * referencia;
+    int referencia; //-1 = EOF
     struct NodoDisco *siguiente;
     int indice;
 }EntradaDisco;
@@ -28,6 +28,7 @@ void visualizacionDisco(Disco *lista);
 //Si una lista es de 1 solo elemento, el campo siguiente apunta a NULL
 void visualizacionIndiceDisco(Disco *lista, int i);
 EntradaDisco* buscarEntradaDiscoLibre(Disco *lista);
+EntradaDisco * ultimobloque(int primerBloque, int cantidad_bloques, Disco *lista);
 
 /*libera memoria*/
 void freeElementoListaDisco(EntradaDisco *actual);

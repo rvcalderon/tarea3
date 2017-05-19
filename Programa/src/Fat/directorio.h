@@ -31,5 +31,7 @@ void visualizacionDir(Directorio *lista);
 void visualizacionIndiceDir(Directorio *lista, int i);
 
 EntradaDirectorio* buscarEntradaDir(Directorio *lista, char * nombre);
+
+EntradaDirectorio* buscarEntradaDirNombre(Directorio *lista, char * nombre);
 /*libera memoria*/
 void freeElementoListaDir(EntradaDirectorio *actual);

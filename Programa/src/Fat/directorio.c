@@ -63,7 +63,7 @@ void visualizacionDir(Directorio *lista){
     EntradaDirectorio *actual;
     actual = lista->inicio;
     while(actual != NULL){
-            printf("[DIR] nombre:%s primerBloque:%d size:%d\n",actual->nombre, actual->primerBloque, actual->size);
+            printf("[DIR] ruta:%s primerBloque:%d size:%d\n",actual->ruta, actual->primerBloque, actual->size);
             actual = actual->siguiente;
         }
 }
@@ -74,14 +74,28 @@ void visualizacionIndiceDir(Directorio *lista, int i){
     actual = lista->inicio;
     while(actual != NULL){
             if (actual->indice == i) {
-              printf("[DIR] nombre:%s primerBloque:%d size:%d\n",actual->nombre, actual->primerBloque, actual->size);
+              printf("[DIR] ruta:%s primerBloque:%d size:%d\n",actual->ruta, actual->primerBloque, actual->size);
               break;
             }
             actual = actual->siguiente;
         }
 }
 
-EntradaDirectorio* buscarEntradaDir(Directorio *lista, char * nombre){
+EntradaDirectorio* buscarEntradaDir(Directorio *lista, char * ruta){
+  EntradaDirectorio *encontrado;
+  encontrado = NULL;
+  EntradaDirectorio *actual = lista->inicio;
+  while(actual!= NULL){
+    if (strcmp(ruta, actual->ruta)==0) {
+      encontrado = actual;
+      break;
+    }
+    actual = actual->siguiente;
+  }
+  return encontrado;
+}
+
+EntradaDirectorio* buscarEntradaDirNombre(Directorio *lista, char * nombre){
   EntradaDirectorio *encontrado;
   encontrado = NULL;
   EntradaDirectorio *actual = lista->inicio;
