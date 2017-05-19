@@ -103,8 +103,20 @@ char * cd(char * rutaRelativa, char * rutaActual){
   return nuevarutaactual;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+  FILE* file = fopen(argv[1],"r");
+
+   //Caso de error en lectura del archivo
+   if(file  == NULL)
+   {
+       printf("%s %c %s %c\n","Error de apertura del archivo ",'"',argv[2],'"');
+       printf("%s\n","Revise que la direccion del archivo sea la correcta");
+       exit(1);
+   }
+  char * rutaActual = "root/";
+  while (!feof(file)){
+
   /*Poblamos el simdisk*/
   Disco *simdisk;
   simdisk = (Disco *) malloc (sizeof (Disco));
@@ -112,34 +124,39 @@ int main()
   int cant_bloques = pow(2, 20);
 
 
-
+  //se guarda dir.txt
   poblarDisco(simdisk, cant_bloques);
-  //visualizacionDisco(simdisk);
+  visualizacionIndiceDisco(simdisk,0);
 
 
   /*Creamos el directorio*/
   Directorio *dir;
   dir = (Directorio *) malloc (sizeof (Directorio));
   incializacionDir(dir);
-  InsercionEnListaVaciaDir(dir, "root/", 0, 4096, "");
   visualizacionDir(dir);
+  char *nombre;
+  char buff[256];
+  char rutaRelativa[256];
+  char accion[256];
 
-  /*Acciones*/
-  // char * accion = "mkfile";
-  // char * nombre = "file";
-  // char * rutaRelativa = "pruebaConcatenacion";
-  // char * rutaActual = "root/";
 
-  char * accion = "mkdir";
-  char * nombre = "directorio1";
-  char * rutaRelativa = "";
-  char * rutaActual = "root/";
+  fscanf(file,"%s",buff);
+  strcpy(accion,buff);
+  printf("%s\n",accion);
+  // /*Acciones*/
+  fscanf(file,"%s",rutaRelativa);
+
+  strtok_r (rutaRelativa, "/", &nombre);
+
+  printf("ruta relativa %s\n",rutaRelativa);
+  printf("nombre %s\n",nombre);
 
   char * nueva_ruta = malloc(strlen(rutaRelativa) + strlen(rutaActual) + strlen(nombre) + 1);
   strcpy(nueva_ruta, rutaActual);
   strcat(nueva_ruta, rutaRelativa);
   strcat(nueva_ruta, nombre);
-  printf("nueva_tura: %s\n", nueva_ruta);
+  printf("ruta a buscar: %s\n", nueva_ruta);
+
   if (strcmp(accion, "mkfile") == 0) {
     printf("[ACCION] %s %s\n", accion, nombre);
     /*revisar si la ruta relativa esta bien*/
@@ -178,11 +195,6 @@ int main()
     podria necesitar menos bloques->cambia la referencia del ultimo y la metadata si se liberan bloques*/
     printf("[ACCION] %s %s\n", accion, nombre);
   }
-
-
-
-
-  
   /*Liberamos memoria*/
   //EntradaDisco *actual;
   //actual = simdisk->inicio;
@@ -190,6 +202,6 @@ int main()
     //freeElementoListaDisco(actual);
     //actual = actual->siguiente;
   //}
-
+}
   return 0;
 }
