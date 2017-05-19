@@ -151,26 +151,6 @@ int main()
   }
 
 
-  char * accion2 = "mkfile";
-  char * nombre2 = "dir_prueba2/file_prueba2.txt";
-
-  if (strcmp(accion2, "mkfile") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-    mkfile(dir, simdisk, nombre2);
-  } else if (strcmp(accion2, "mkdir") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-  } else if (strcmp(accion2, "cd") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-  } else if (strcmp(accion2, "mv") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-  } else if (strcmp(accion2, "rm") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-  } else if (strcmp(accion2, "ad") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-  } else if (strcmp(accion2, "rd") == 0) {
-    printf("[ACCION] %s %s\n", accion2, nombre2);
-  }
-
 
   /*Liberamos memoria*/
   EntradaDisco *actual;
@@ -182,36 +162,3 @@ int main()
 
   return 0;
 }
-
-
-/*
-#include <stdio.h>
-#include <math.h>
-char* convertDecimalToBinary(int n);
-
-int main()
-{
-    int n;
-    printf("Enter a decimal number: ");
-    scanf("%d", &n);
-    printf("%d in decimal = %s in binary", n, convertDecimalToBinary(n));
-    return 0;
-}
-
-char* convertDecimalToBinary(int n)
-{
-    char *binaryNumber = "";
-    int remainder, i = 1, step = 1;
-
-    while (n!=0)
-    {
-        remainder = n%2;
-        printf("Step %d: %d/2, Remainder = %d, Quotient = %d\n", step++, n, remainder, n/2);
-        n /= 2;
-        binaryNumber += remainder*i;
-        printf("binario parcial: %s\n", binaryNumber);
-        i *= 10;
-    }
-    return binaryNumber;
-}
-*/
