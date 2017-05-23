@@ -1,2 +1,9 @@
-mkdir directorio1/file
-
+mkdir d1
+mkdir d1/d2
+mkdir d1/d3
+mkdir d1/d2/d4
+mkdir d1/d3/d5
+mkdir d1/d3/d6
+mkdir d1/d7
+mkdir d1/d7/d8
+mkdir d1/d7/d9

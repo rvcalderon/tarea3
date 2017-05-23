@@ -21,7 +21,7 @@ int InsercionEnListaVaciaDisco(Disco *lista, char *metadata){
         return -1;
     strcpy(nuevo_elemento->metadata, metadata);
 
-    nuevo_elemento->referencia = "-1";
+    nuevo_elemento->referencia = -1;
     nuevo_elemento->siguiente = NULL;
     lista->inicio = nuevo_elemento;
     lista->fin = nuevo_elemento;
@@ -37,10 +37,10 @@ int InsercionFinListaDisco(Disco *lista, EntradaDisco *actual, char *metadata){
         return -1;
     if((nuevo_elemento->metadata = (char *)malloc(50*sizeof(char)))==NULL)
         return -1;
-    
+
     strcpy(nuevo_elemento->metadata,metadata);
 
-    nuevo_elemento->referencia = NULL;
+    nuevo_elemento->referencia = -10;
     actual->siguiente = nuevo_elemento;
     nuevo_elemento->siguiente = NULL;
     nuevo_elemento->indice = lista->tamano;
@@ -91,7 +91,6 @@ EntradaDisco* buscarEntradaDiscoLibre(Disco *lista){
 
 void freeElementoListaDisco(EntradaDisco *actual) {
   free(actual->metadata);
-  free(actual->referencia);
   free(actual);
 }
 
@@ -102,7 +101,7 @@ EntradaDisco * ultimobloque(int primerBloque, int cantidad_bloques, Disco *lista
   int i = primerBloque;
   while(actual != NULL){
           if (actual->indice == i) {
-            if(actual->referencia == "-1"){
+            if(actual->referencia == -1){
               return actual;
             }
             else{
@@ -112,5 +111,5 @@ EntradaDisco * ultimobloque(int primerBloque, int cantidad_bloques, Disco *lista
           }
           actual = actual->siguiente;
       }
+      return NULL;
 }
-
